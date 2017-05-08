@@ -88,6 +88,7 @@ function getH(){{
             int id = wv3.GetHashCode();
             wv3.ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData;
             //wv3.RemoveAllLocalCallbacks();
+            //wv3.RemoveAllGlobalCallbacks();
             wv3.RegisterLocalCallback("test", s => { Debug.WriteLine($"from {id}: " + s); });
             wv3.Source = htmlString(id.ToString());
             wv3.HeightRequest = 300.0;
