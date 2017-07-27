@@ -65,11 +65,11 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
     <Reference Include="WebView.Plugin.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.WebView.1.5.0\lib\MonoAndroid10\WebView.Plugin.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugin.WebView.1.5.2\lib\MonoAndroid10\WebView.Plugin.Abstractions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebView.Plugin.Droid, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Xam.Plugin.WebView.1.5.0\lib\MonoAndroid10\WebView.Plugin.Droid.dll</HintPath>
+      <HintPath>..\..\packages\Xam.Plugin.WebView.1.5.2\lib\MonoAndroid10\WebView.Plugin.Droid.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
