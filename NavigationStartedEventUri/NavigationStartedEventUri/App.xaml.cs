@@ -10,6 +10,7 @@ namespace NavigationStartedEventUri
 {
     public partial class App : Application
     {
+        public int count = 0;
         public string htmlString(string wvName)
         {
             return $@"
@@ -20,7 +21,7 @@ namespace NavigationStartedEventUri
 <body>
 <div id='main'>
 <h1>Title</h1>
-<a href='http://www.google.com'>google</a>
+<h2>An Element that is not a Link</h2>
 </div>
 <div id='debug'>
 initial
@@ -83,18 +84,28 @@ function getH(){{
 
         private void Button_Clicked(object sender, EventArgs e)
         {
+            count = count + 1;
+            Debug.WriteLine($"Button Clicked, Count = {count}");
             stack.Children.Clear();
-            FormsWebView wv3 = new FormsWebView();
-            int id = wv3.GetHashCode();
-            wv3.ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData;
+            FormsWebView wv3 = new FormsWebView() {
+                Source = htmlString(count.ToString()),
+                ContentType = Xam.Plugin.Abstractions.Enumerations.WebViewContentType.StringData,
+                BackgroundColor = Color.Red,
+                HeightRequest = 300.0,
+                WidthRequest = 300.0
+            };
             //wv3.RemoveAllLocalCallbacks();
             //wv3.RemoveAllGlobalCallbacks();
-            wv3.RegisterLocalCallback("test", s => { Debug.WriteLine($"from {id}: " + s); });
-            wv3.Source = htmlString(id.ToString());
-            wv3.HeightRequest = 300.0;
-            wv3.WidthRequest = 300.0;
+            wv3.RegisterLocalCallback("test", s => { Debug.WriteLine($"from {count}: " + s); });
             wv3.OnContentLoaded += Wv3_OnContentLoaded;
+            wv3.OnNavigationStarted += Wv3_OnNavigationStarted;
             stack.Children.Add(wv3);
+        }
+
+        private Xam.Plugin.Abstractions.Events.Inbound.NavigationRequestedDelegate Wv3_OnNavigationStarted(Xam.Plugin.Abstractions.Events.Inbound.NavigationRequestedDelegate eventObj)
+        {
+            Debug.WriteLine($"Navigating to:{eventObj.Uri}.");
+            return eventObj;
         }
 
         private void Wv3_OnContentLoaded(Xam.Plugin.Abstractions.Events.Inbound.ContentLoadedDelegate eventObj)
